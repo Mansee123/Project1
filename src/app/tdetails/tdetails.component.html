@@ -1,0 +1,63 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="kk">
+  
+<form #taskForm="ngForm" ngNativeValidate (ngSubmit)="saveTask(taskForm.value)">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"> for month {{tdetail.month}}</h3>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="form-group" [class.has-success]="monthControl.valid" 
+    [class.has-error]="monthControl.invalid && monthControl.touched">
+      <label for="month" class="control-label">Month</label>
+      <select required id="month" [(ngModel)]="tdetail.month" 
+      name="month" type="text" #monthControl="ngModel" class="form-control">
+      <option value="January">January</option>
+			<option value="February">February</option>
+			<option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+     </select>
+      <span class="help-block" *ngIf="monthControl.invalid && monthControl.touched">
+       Month is required
+       
+      </span>
+    </div>
+    </div>
+    <div *ngFor="let user of userData.data let i = index"[attr.data-index]="i">
+   
+        <div class="form-group" [class.has-success]="task_nameControl.valid" 
+        [class.has-error]="task_nameControl.invalid && task_nameControl.touched">
+          <label for="task_name" class="control-label">Number of {{user.task_name}}</label>
+          <input required id="task_name" [(ngModel)]="task_name"
+          name="task_name" type="number" #task_nameControl="ngModel" class="form-control">
+          <span class="help-block" *ngIf="task_nameControl.invalid && task_nameControl.touched">
+           Count is required
+          </span>
+        </div>
+
+        </div>
+        
+
+        
+      
+      
+      
+
+   
+      <button type="submit" class="button" [disabled]="taskForm.invalid">Save</button>
+    
+  
+</form>
+</div>
+
+
